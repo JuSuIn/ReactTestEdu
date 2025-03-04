@@ -9,8 +9,10 @@ import { EXAMPLES } from "./data.js";
 
 function App() {
   // const [selectedTopic, setselectedTopic] = useState("Please click a button");
-  const [selectedTopic, setselectedTopic] = useState("components");
-  let tabContent = "Please click a button";
+  // const [selectedTopic, setselectedTopic] = useState("components");
+  // basic useState choice
+  const [selectedTopic, setselectedTopic] = useState();
+  //let tabContent = "Please click a button";
 
   function handleSelect(selectedButton) {
     //selectedButton => ''Components' or 'JSX' or 'Props' or 'State'
@@ -20,6 +22,20 @@ function App() {
   }
 
   console.log("APP COMPONENT EXECUTING");
+
+  let tabContent = <p>Please click a button</p>;
+
+  if (selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTopic].title} </h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -51,14 +67,28 @@ function App() {
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
             {/* <TabButton label="Components" /> */}
           </menu>
-          {/* {selectedTopic} */}
-          <div id="tab-content">
-            <h3>{EXAMPLES[selectedTopic].title} </h3>
-            <p>{EXAMPLES[selectedTopic].description}</p>
-            <pre>
-              <code>{EXAMPLES[selectedTopic].code}</code>
-            </pre>
-          </div>
+          {tabContent}
+          {/* {selectedTopic === undefined} <p>Please select a topic.</p> */}
+          {/* {!selectedTopic ? <p>Please select a topic.</p> : null} */}
+          {/* {!selectedTopic && <p>Please select a topic.</p>}
+          {selectedTopic && (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedTopic].title} </h3>
+              <p>{EXAMPLES[selectedTopic].description}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          )} */}
+          {/* {selectedTopic ? (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedTopic].title} </h3>
+              <p>{EXAMPLES[selectedTopic].description}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          ) : null} */}
         </section>
       </main>
     </div>
