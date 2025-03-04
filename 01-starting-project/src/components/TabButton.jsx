@@ -1,4 +1,4 @@
-function TabButton({ children, onSelect }) {
+function TabButton({ children, onSelect, isSelected }) {
   // function TabButton({ label }) {
   //   document.querySelector.addEventListener("click", () => {
   //   });
@@ -7,7 +7,9 @@ function TabButton({ children, onSelect }) {
 
   return (
     <li>
-      <button onClick={onSelect}>{children}</button>
+      <button className={isSelected ? "active" : undefined} onClick={onSelect}>
+        {children}
+      </button>
       {/* <button>{label}</button> */}
     </li>
   );
